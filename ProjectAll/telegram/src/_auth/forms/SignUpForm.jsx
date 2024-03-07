@@ -1,4 +1,5 @@
 import { Formik, Form, Field } from "formik";
+import {Link} from 'react-router-dom'
 import * as Yup from "yup";
 import "./signUpForm.css";
 import { useState } from "react";
@@ -21,6 +22,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 function SignUpForm() {
+  const[signup,SetSignup]=useState([]);
   const [loading, setLoading] = useState(false);
   return (
     <div className="signup-container">
@@ -33,7 +35,6 @@ function SignUpForm() {
       <Formik
         initialValues={{
           Name: "",
-
           email: "",
           password: "",
           conform_password: "",
@@ -42,6 +43,7 @@ function SignUpForm() {
         onSubmit={(values) => {
           // same shape as initial values
           setLoading(true)
+          
           console.log(values);
         }}
       >
@@ -105,8 +107,8 @@ function SignUpForm() {
           </Form>
         )}
       </Formik>
-      <div className="mt-1">
-        <p>Already Acoount </p>
+      <div className="mt-3 text-center">
+        <p >Already have an Acoount ? <Link to={'/signin'}><span className="text-blue-400 underline ">Signin</span></Link> </p> 
       </div>
     </div>
   );
